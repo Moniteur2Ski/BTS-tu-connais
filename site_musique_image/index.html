@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Site avec une Photo en Rotation, de la Musique et des Souris Dansantes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            flex-direction: column;
+            overflow: hidden; /* Empêche le débordement des souris */
+            position: relative;
+        }
+
+        img {
+            max-width: 50%; /* Réduction de la taille du chat */
+            height: auto;
+            border: 5px solid #333;
+            border-radius: 8px;
+            animation: rotateImage 5s linear infinite; /* Animation de rotation */
+            z-index: 1;
+        }
+
+        /* Définir l'animation de rotation */
+        @keyframes rotateImage {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Animation de danse des souris */
+        @keyframes danceLeft {
+            0% {
+                transform: translateX(-100px) translateY(0);
+            }
+            50% {
+                transform: translateX(-100px) translateY(-30px);
+            }
+            100% {
+                transform: translateX(-100px) translateY(0);
+            }
+        }
+
+        @keyframes danceRight {
+            0% {
+                transform: translateX(100px) translateY(0);
+            }
+            50% {
+                transform: translateX(100px) translateY(30px);
+            }
+            100% {
+                transform: translateX(100px) translateY(0);
+            }
+        }
+
+        .mouse {
+            position: absolute;
+            bottom: 10px; /* Placer les souris un peu plus haut pour qu'elles soient bien visibles */
+            width: 80px; /* Agrandissement des souris */
+            height: 80px;
+            background-image: url('mouse.gif'); /* Utilisation du GIF de la souris */
+            background-size: contain;
+            background-repeat: no-repeat;
+            z-index: 2;
+        }
+
+        /* Positionner les souris et leur faire danser */
+        .left {
+            left: 10%; /* Positionner la souris gauche plus à gauche */
+            animation: danceLeft 1.5s infinite;
+        }
+
+        .right {
+            right: 10%; /* Positionner la souris droite plus à droite */
+            animation: danceRight 1.5s infinite;
+        }
+
+        audio {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Vérification de la compatibilité avec les formats audio (OGG et MP3) -->
+    <audio autoplay loop controls>
+        <source src="musique.ogg" type="audio/ogg">
+        <source src="musique.mp3" type="audio/mp3">
+        Votre navigateur ne prend pas en charge la lecture audio.
+    </audio>
+    
+    <!-- L'image du chat tournant -->
+    <img src="image.jpg" alt="Une image tournante">
+    
+    <!-- Souris à gauche et à droite de l'image -->
+    <div class="mouse left"></div>
+    <div class="mouse right"></div>
+</body>
+</html>
